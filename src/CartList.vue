@@ -108,7 +108,6 @@ export default {
 
         checkOut () {
             if (!User.hasLogin())
-                // pageSwitcher.switchTo("/login.html?next=/cart.html", "Login")
                 EventBus.$emit('push-notification', 'Please login to continue to checkout.')
             else if (!this.hasItem) {
                 EventBus.$emit('push-notification', 'There is nothing to checkout!')

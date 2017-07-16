@@ -6,7 +6,6 @@
             <navigation></navigation>
         </div>
         <div id="content">
-            <!-- <router-link to="/">Store</router-link>  -->
             <router-view></router-view> 
         </div>
         <div id="footer">

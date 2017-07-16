@@ -150,9 +150,6 @@ export default {
                             })
                             this.signupMessage =
                                 "Signed up successfully. Redirecting to login page ..."
-                            // setTimeout(() => {
-                            //     pageSwitcher.switchTo("/login.html", "Login")
-                            // }, 1000)
                         }
 
                     }, 1000)
