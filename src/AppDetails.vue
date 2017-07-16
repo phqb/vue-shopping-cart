@@ -141,8 +141,6 @@ export default {
 
                     if (snapshotVal) {
                         var item = snapshotVal[this.code]
-                    
-                        this.name = document.title = item.name
 
                         this.price = item.price
                         this.image = item.image
