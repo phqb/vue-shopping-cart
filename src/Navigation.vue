@@ -8,6 +8,7 @@
             </router-link>
             <div class="navigation-bar-wrapper-left-item-wrapper">
                 <router-link to="/"
+                    v-bind:style="{ 'font-weight': this.$route.path === '/' ? 'bold' : 'normal' }"
                     class="navigation-bar-wrapper-left-item-wrapper-item"
                     title="Welcome to Steem">
                     Store
@@ -17,8 +18,8 @@
                     class="navigation-bar-wrapper-left-item-wrapper-item">
                     Community
                 </a>
-                <router-link 
-                    to="/about"
+                <router-link to="/about"
+                    v-bind:style="{ 'font-weight': this.$route.path === '/about' ? 'bold' : 'normal' }"
                     class="navigation-bar-wrapper-left-item-wrapper-item" 
                     title="Steem, The Ultimate Online Game Platform">
                     About
