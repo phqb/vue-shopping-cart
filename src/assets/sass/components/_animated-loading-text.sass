@@ -1,0 +1,21 @@
+@keyframes blinking
+    from 
+        color: lightgray
+    to 
+        color: gray
+
+.animated-loading-text
+    width: 250px
+    font-size: 24px
+    height: 24px
+    text-align: center
+    position: fixed
+    top: calc(50vh - 12px)
+    left: calc(50vw - 0.5 * 250px)
+    animation-name: blinking
+    animation-duration: 0.5s
+    animation-iteration-count: infinite
+    animation-direction: alternate
+    display: none
+    z-index: 99
+    text-shadow: 0px 0px 16px white

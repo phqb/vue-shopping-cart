@@ -1,0 +1,34 @@
+.material-button
+    position: relative
+    padding: 12px
+    cursor: pointer
+    border: none
+    outline: none
+    border-radius: 1px
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6)
+    background-color: #009688
+    color: white
+    transition: background-color .3s
+    overflow: hidden
+    font-size: 14px
+    text-align: center
+
+    &:hover
+        background-color: #00897B
+
+    &:before
+        content: ""
+        position: absolute
+        top: 50%
+        left: 50%
+        display: block
+        width: 0
+        padding-top: 0
+        border-radius: 100%
+        background-color: rgba(236, 240, 241, .2)
+        transform: translate(-50%, -50%)
+
+    &:active:before
+        width: 120%
+        padding-top: 120%
+        transition: width .2s ease-out, padding-top .2s ease-out
