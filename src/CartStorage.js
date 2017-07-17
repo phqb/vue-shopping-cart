@@ -9,7 +9,7 @@ export const CartStorage = {
     },
 
     getAll () {
-        return JSON.parse(window.localStorage.getItem(this.ADDED_ITEMS_KEY));
+        return JSON.parse(window.localStorage.getItem(this.ADDED_ITEMS_KEY) || '[]');
     },
 
     setAll (items) {
