@@ -9,16 +9,20 @@
         <div class="app-detail-title" >{{ name }}</div>
         <div class="app-detail-wrapper" v-show="!loadingData">
             <div class="app-detail-wrapper-cover">
-                <img v-bind:src="theaterImage" 
+                <video v-if="isVideo(theaterImage)" autoplay 
+                    class="app-detail-wrapper-cover-theater" controls="">
+                    <source v-bind:src="theaterImage" type="video/webm">
+                </video>
+                <img v-else v-bind:src="theaterImage" 
                     class="app-detail-wrapper-cover-theater">
                 <div class="app-detail-wrapper-cover-thumbnails-list">
                     <slideshow-thumb 
                         v-for="thumb in thumbnails" 
                         v-bind:thumb="thumb"
                         v-bind:key="thumb.id"
-                        v-bind:src="thumb.href"
                         v-on:updatethumbnailfocus="updateThumbnailFocus"
-                        class="app-detail-wrapper-cover-thumbnails-list-item">
+                        class="app-detail-wrapper-cover-thumbnails-list-item"
+                        v-bind:class="{ 'app-detail-wrapper-cover-thumbnails-list-item-video': isVideoThumb(thumb.href) }">
                     </slideshow-thumb>
                 </div>
             </div>
@@ -88,10 +92,11 @@ export default {
             },
 
             template: `
-                <img    
+                <div 
                     v-on:click="emitUpdateThumbnailFocus"
-                    v-bind:class="{ 'app-detail-wrapper-cover-thumbnails-list-item-focused': focused }"
-                >
+                    v-bind:class="{ 'app-detail-wrapper-cover-thumbnails-list-item-focused': focused }">
+                    <img v-bind:src="thumb.href">
+                </div>
             `,
 
             methods: {
@@ -112,6 +117,14 @@ export default {
     },
 
     methods: {
+        isVideo (url) {
+            return url.indexOf('webm') >= 0
+        },
+
+        isVideoThumb(url) {
+            return url.indexOf('movie') >= 0
+        },
+
         clearData () {
             this.code = ""
             this.name = ""
@@ -239,8 +252,25 @@ export default {
                     cursor: pointer
                     border: 2px solid transparent
 
+                    img
+                        width: 100%
+                        height: 100%
+
                     &-focused
                         border: 2px solid gray !important
+
+                    &-video
+                        position: relative
+
+                        &::before
+                            font-family: 'FontAwesome'
+                            content: '\f16a'
+                            font-size: 32px
+                            position: absolute
+                            top: 50%
+                            left: 50%
+                            transform: translate(-50%, -50%)
+                            color: teal
 
         &-description
             width: 250px
