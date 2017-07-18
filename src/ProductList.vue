@@ -97,6 +97,10 @@ export default {
         window.addEventListener('scroll', this.scrollEventHandler)
     },
 
+    beforeCreate () {
+        EventBus.$emit('componentLoaded')
+    },
+
     beforeDestroy () {
         window.removeEventListener('scroll', this.scrollEventHandler)
     }

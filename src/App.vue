@@ -27,6 +27,7 @@ export default {
     watch: {
         '$route' (to, from) {
             EventBus.$emit('componentBeforeRoute')
+            console.log('componentBeforeRoute')
         }
     },
 

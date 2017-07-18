@@ -63,6 +63,7 @@ export default {
     },
 
     beforeCreate () {
+        EventBus.$emit('componentLoaded')
         EventBus.$on('logout', () => this.$forceUpdate())
     }
 }

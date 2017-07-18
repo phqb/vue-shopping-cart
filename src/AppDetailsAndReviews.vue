@@ -15,8 +15,13 @@ export default {
         'app-details': AppDetails,
         'app-reviews': AppReviews
     },
+
     mounted () {
         EventBus.$emit('componentMounted')
+    },
+
+    beforeCreate () {
+        EventBus.$emit('componentLoaded')
     }
 }
 </script>

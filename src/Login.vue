@@ -92,6 +92,10 @@ export default {
 
     mounted () {
         EventBus.$emit('componentMounted')
+    },
+
+    beforeCreate () {
+        EventBus.$emit('componentLoaded')
     }
 }
 </script>

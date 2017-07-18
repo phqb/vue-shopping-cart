@@ -1,38 +1,42 @@
 <template>
-    <div class="page-loading-bar"></div>
+    <div v-bind:style="{ width: percent + '%', top: enable ? '0' : '-4px' }" class="page-loading-bar"></div>
 </template>
 
 <script>
 import { EventBus } from './EventBus.js'
 
 export default {
+    data () {
+        return {
+            percent: 0,
+            enable: true
+        }  
+    },
+
     methods: {
-        enable () {
-            this.$el.style.transistionDuration = '0.5s'
-        },
-
-        disable () {
-            this.$el.style.transistionDuration = '0s'
-        },
-
         setPercent (percent) {
-            this.$el.style.width = percent + '%'
-        },
-
-        updatePercent (percent) {
-            this.enable()
-            this.setPercent(percent)
+            if (!this.enable)
+                this.enable = true
+            this.percent = percent
             if (percent === 100)
                 setTimeout(() => {
-                    this.disable()
-                    this.setPercent(0)
+                    this.enable = false
+                    this.percent = 0
                 }, 500)
+        },
+
+        increasePercent (increment) {
+            if (this.percent + increment > 100)
+                this.percent = 100
+            else
+                this.percent += increment
         }
     },
 
     beforeCreate () {
-        EventBus.$on('componentBeforeRoute', () => this.updatePercent(70 - 20*Math.random()))
-        EventBus.$on('componentMounted', () => this.updatePercent(100))
+        EventBus.$on('componentBeforeLoad', () => this.setPercent(60 + 20*Math.random()))
+        EventBus.$on('componentBeforeRoute', () => this.increasePercent(20*Math.random()))
+        EventBus.$on('componentMounted', () => this.setPercent(100))
     },
 
     mounted () {
@@ -49,4 +53,5 @@ export default {
     left: 0
     background: gray
     z-index: 1
+    transition: width 0.5s
 </style>

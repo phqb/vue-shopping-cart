@@ -1,13 +1,22 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const ProductList = () => import('./ProductList.vue')
-const CartList = () => import('./CartList.vue')
-const AppDetailsAndReviews = () => import('./AppDetailsAndReviews.vue')
-const Login = () => import('./Login.vue')
-const Signup = () => import('./Signup.vue')
-const Profile = () => import('./Profile.vue')
-const About = () => import('./About.vue')
+import { EventBus } from './EventBus.js'
+
+function promiseImport(component) {
+    return () => {
+        EventBus.$emit('componentBeforeLoad')
+        return import('./' + component + '.vue')
+    }
+}
+
+const ProductList = promiseImport('ProductList')
+const CartList = promiseImport('CartList')
+const AppDetailsAndReviews = promiseImport('AppDetailsAndReviews')
+const Login = promiseImport('Login')
+const Signup = promiseImport('Signup')
+const Profile = promiseImport('Profile')
+const About = promiseImport('About')
 
 Vue.use(Router)
 
