@@ -24,7 +24,7 @@ export default {
 
     data () {
         return {
-            debug: true,
+            debug: false,
             productItems: [],
             loadingMoreData: false,
             lastScrollY: Utils.getScrollTop(),

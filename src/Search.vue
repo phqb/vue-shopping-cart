@@ -26,7 +26,7 @@ import _ from 'lodash'
 export default {
     data () {
         return {
-            debug: true,
+            debug: false,
             searching: false,
             searchTerm: '',
             lastSearchTerm: '',

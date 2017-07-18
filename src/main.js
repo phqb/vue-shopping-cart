@@ -7,3 +7,5 @@ new Vue({
     router,
     render: (h) => h(App),
 })
+
+window.APP_SCRIPT_LOADED = true
