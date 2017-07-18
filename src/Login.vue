@@ -69,7 +69,7 @@ export default {
             if (!this.email || !this.password)
                 this.loginMessage =
                     "You must enter your email and password."
-            else if (!loginFired) {
+            else if (!this.loginFired) {
                 this.loading = true
                 this.loginFired = true
                 var user = User.hasUser(this.email)
